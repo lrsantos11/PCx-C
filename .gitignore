@@ -1,18 +1,63 @@
-# Object files
+
+# Vim's temporary files.
+*.swp
+
+# Doc
+DOC/_build
+DOC/_doxygen
+xml
+
+# ctags
+*tags
+
+# dev
+debug
+mps-test/
+
+# C/C++ Object files
 *.o
+*.slo
+*.lo
 *.ko
 
-# Libraries
+# C/C++ Libraries
 *.lib
 *.a
+*.so
+*.dylib
+*.lai
+*.la
+*.a
 
-# Shared objects (inc. Windows DLLs)
+# C/C++ Shared objects (inc. Windows DLLs)
 *.dll
 *.so
 *.so.*
 *.dylib
 
-# Executables
+# C/C++ Executables
 *.exe
 *.out
 *.app
+
+# Configuration
+*Makefile
+aclocal.m4
+autom4te.cache
+config.status
+ltmain.sh
+
+# Test problem
+mps/*
+
+# Executable
+PCx
+
+# Log files
+*.log
+
+# Benchmark
+__pycache__/*
+
+#Apple's .DS_Store
+.DS_Store
