@@ -5,8 +5,8 @@
 # This file was copied from the PETSc package
 #   http://www.mcs.anl.gov/petsc/petsc.html
 
-if (-e /bin/uname) then
-    set LARCH = `/bin/uname -s`
+if (-e /usr/bin/uname) then
+    set LARCH = `/usr/bin/uname -s`
     if ("$LARCH" == "AIX") then
         set LARCH = "rs6000"
     else if ("$LARCH" == "HP-UX") then
@@ -16,7 +16,7 @@ if (-e /bin/uname) then
     else if ("$LARCH" == "FreeBSD") then
 	set LARCH = "freebsd"    
     else if ("$LARCH" != "IRIX" && "$LARCH" != "IRIX64") then 
-        set LARCH = `/bin/uname -m`
+        set LARCH = `/usr/bin/uname -m`
     endif
 else  if (-e /usr/bin/uname) then
     set LARCH = `/usr/bin/uname`
@@ -51,8 +51,10 @@ else if ("$LARCH" == "Linux" ) then
   set LARCH = "linux"
 else if ("$LARCH" == "CRAY Y-MP" ) then 
   set LARCH = "t3d"
+else if ("$LARCH" == "Darwin" ) then 
+  set LARCH = "darwin"
 endif
 #
 echo $LARCH
 exit 0
-
+w
