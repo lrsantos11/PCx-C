@@ -13,7 +13,7 @@
 # to the CFLAGS = line below.
 
 .SUFFIXES: .c .o
-CC = gcc
+CC = icc
 SHELL = /bin/sh
 
 CFLAGS = -O
