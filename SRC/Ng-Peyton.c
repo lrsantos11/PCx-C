@@ -7,12 +7,16 @@
  * (C) 1996 University of Chicago. See COPYRIGHT in main directory.
  */
 
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
+
 #include <stdio.h>
 #include "main.h"
 #include "memory.h"
 #include "solver.h"
-#include "Ng-Peyton.h"
+#include "NgPeyton.h"
 #include "string.h"
+#include "f2c.h"
 
 /*****************************************************************/
 /* This is an implementation of solver.h for the Ng-Peyton Solver*/
@@ -146,7 +150,8 @@ int
 Order(Factor)
      FactorType     *Factor;
 {
-   int       WorkSize, *Work, dimension, col, entry, flag;
+   int       WorkSize,  dimension, col, entry, flag;
+   integer 	*Work;
    int      *ColumnCount, offset, row, NumCols, nonzeros;
    int      *TempBeginRow, *TempRow;
    long int  temp;
@@ -215,7 +220,7 @@ Order(Factor)
    
    /* call multiple minimum degree routine */
    
-   ordmmd(&dimension, NgPeyton->pSuperNodeCols,
+   ordmmd_(&dimension, NgPeyton->pSuperNodeCols,
 	  NgPeyton->SuperNodeRows,
 	  Factor->InvPerm, Factor->Perm,
 	  &WorkSize, Work, &(NgPeyton->NumCompressedCols), &flag);
@@ -234,6 +239,7 @@ Order(Factor)
    
    WorkSize = 7 * dimension + 3;
    Work = (int *) Realloc(Work, WorkSize * sizeof(int), "Work in Order()");
+   //Work = (integer *) Realloc(Work, WorkSize * sizeof(integer), "Work in Order()");
    ColumnCount = NewInt(dimension, "ColumnCount");
    
    sfinit(&dimension, &nonzeros,
@@ -270,7 +276,8 @@ Order(Factor)
    
    WorkSize = NgPeyton->NumSuperNodes + 2 * dimension + 1;
    Work = (int *) Realloc(Work, WorkSize * sizeof(int), "Work");
-   
+   //Work = (integer *) Realloc(Work, WorkSize * sizeof(integer), "Work");
+
    symfct(&dimension, &nonzeros,
 	  TempBeginRow, TempRow,
 	  Factor->Perm, Factor->InvPerm,
@@ -352,8 +359,19 @@ Factorize(Factor, Inputs)
    NgPeyton = (NgPeytonType *) Factor->ptr;
 
    CacheSize = Inputs->CacheSize;
-   
+
+#define gambiarra
+
+#ifdef gambiarra
+   if (first == 0)
+   {
+	   Fatorize_Split = NewInt(Factor->AAT->NumCols, "Split");
+   };
+   Split = Fatorize_Split;
+#else   
    Split = NewInt(Factor->AAT->NumCols, "Split");
+  
+#endif // gambiarra
 
    Factor->SmallDiagonals = NO;
    bfinit(&(Factor->AAT->NumCols),
@@ -365,11 +383,34 @@ Factorize(Factor, Inputs)
    
    /* allocate the amount of memory returned as TmpSize */
    
+#ifdef gambiarra
+   if (first == 0)
+   {
+	   Fatorize_Tmp = NewDouble(TmpSize, "Tmp");
+	   Fatorize_TmpSize = TmpSize;
+   } else if (Fatorize_TmpSize != TmpSize)
+	   Fatorize_TmpSize = -1;
+   Tmp = Fatorize_Tmp;
+#else
    Tmp = NewDouble(TmpSize, "Tmp");
+#endif // gambiarra   
    
    UnrollingLevel = Inputs->UnrollingLevel;
    WorkSize = 2 * (Factor->AAT->NumCols) + 2 * (NgPeyton->NumSuperNodes);
+
+#ifdef gambiarra
+   if (first == 0)
+   {
+	   Fatorize_Work = NewInt(WorkSize, "Work");
+	   first = 1;
+	   Fatorize_WorkSize = WorkSize;
+   } else if (Fatorize_WorkSize != WorkSize)
+	   Fatorize_WorkSize = -1;
+
+   Work = Fatorize_Work;
+#else
    Work = NewInt(WorkSize, "Work");
+#endif // gambiarra   
    
    blklvl(&(Factor->AAT->NumCols),
 	  &(NgPeyton->NumSuperNodes),
@@ -399,9 +440,11 @@ Factorize(Factor, Inputs)
     * Factor->pSuperNodeCols, Factor->SuperNodeRows, Factor->pBeginRowL,
     * &TmpSize, &six); */
    
+#ifndef gambiarra
    Free((char *) Tmp);
    Free((char *) Work);
    Free((char *) Split);
+#endif // gambiarra
    
    if (ErrorFlag == -2 || ErrorFlag == -3) 
       {

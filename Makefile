@@ -1,5 +1,7 @@
 SHELL=/bin/sh
 
+CC = icc
+
 # default
 PCx:: 
 	cd SRC;       ${MAKE}

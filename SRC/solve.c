@@ -7,6 +7,7 @@
  * (C) 1996 University of Chicago. See COPYRIGHT in main directory.
  */
 
+//#include <math.h>
 #include <math.h>
 #include <stdio.h>
 #include "main.h"
@@ -547,6 +548,7 @@ ComputeCentering(Current, Predictor, mu, alpha_P, alpha_D, Inputs)
    int             i, NumBounds, NumCols;
    double          mdg, sigma;
    double         *x, *s, *w, *r, *dx, *ds, *dw, *dr;
+   int* NewNull = (int*) 0; // Fernando
    
   /*******************************************************************/
   /* Transfer to local pointers                                      */
@@ -564,7 +566,7 @@ ComputeCentering(Current, Predictor, mu, alpha_P, alpha_D, Inputs)
   /* not violate nonnegativity of the x, s, w, and r components      */
   /*******************************************************************/
 
-   StepToBoundary(Current, Predictor, NULL, alpha_P, alpha_D);
+   StepToBoundary(Current, Predictor, (Iterate*) NewNull, alpha_P, alpha_D); // Fernando
 
   /*******************************************************************/
   /* Use the largest step in a heuristic to compute the              */

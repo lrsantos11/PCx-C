@@ -11,8 +11,12 @@
  * utility function to dump an MPS data structure as an MPS file
  */
 
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
+
 #include<stdio.h>
 #include<math.h>
+//#include <math.h>
 #include<ctype.h>
 #include<string.h>
 #include"main.h" 

@@ -11,7 +11,7 @@ extern int f__lcount;
 extern char *f__icptr;
 extern char *f__icend;
 extern icilist *f__svic;
-extern int f__icnum, f__recpos;
+extern int f__icnum/*, f__recpos*/; // Fernando
 
 static int i_getc(Void)
 {

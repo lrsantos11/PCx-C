@@ -12,6 +12,7 @@
 #include <string.h>
 #include "main.h"
 #include "memory.h"
+#include "f2c.h"
 
 /********************************************************************
  *                                                                  *
@@ -104,6 +105,9 @@ PCx(LP, Solution, Inputs)
    double          UserTime2, SysTime2, OldUserTime2, OldSysTime2;
    int             MaxCorrections, NumCorrections=0, MaxGondzioCorrections();
 
+   int tamanho1, tamanho2;
+   tamanho1 = sizeof(int);
+   tamanho2 = sizeof(integer);
    
    GetTime(&OldUserTime, &OldSysTime);
    
@@ -160,7 +164,7 @@ PCx(LP, Solution, Inputs)
    Corrector = NewIterate(NumRows, NumCols, NumBounds);
    Corrector->BoundIndex = iupbound;
    
-   min_phi = NewDouble(Inputs->IterationLimit+1, "min_phi");
+   min_phi = NewDouble(Inputs->IterationLimit, "min_phi");
    
    /* Compute norms for convergence tests */
    

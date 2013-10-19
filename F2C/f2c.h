@@ -4,10 +4,17 @@
 
 	- From The Shogakukan DICTIONARY OF NEW ENGLISH (Second edition) */
 
+#include "extra_defs.h" // Fernando
+
 #ifndef F2C_INCLUDE
 #define F2C_INCLUDE
 
-typedef long int integer;
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
+
+
+//typedef long int integer; // Rafael
+typedef  int integer;
 typedef unsigned long int uinteger;
 typedef char *address;
 typedef short int shortint;

@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
+//#include <math.h>
 #include "memory.h"
 #include "main.h"
 

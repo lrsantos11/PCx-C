@@ -2,11 +2,11 @@
 #include "fio.h"
 #include "string.h"
 #ifndef NON_POSIX_STDIO
-#ifdef MSDOS
-#include "io.h"
-#else
+//#ifdef MSDOS
+//#include "io.h"
+//#else
 #include "unistd.h"	/* for access */
-#endif
+//#endif
 #endif
 
 #ifdef KR_headers

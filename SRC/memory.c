@@ -7,6 +7,9 @@
  * (C) 1996 University of Chicago. See COPYRIGHT in main directory.
  */
 
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
+
 #include <stdio.h>
 /* #include <malloc.h> */
 #include <stdlib.h>

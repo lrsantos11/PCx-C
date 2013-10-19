@@ -53,7 +53,7 @@ int Order(/* FactorType *Factor */);
 /*                                                                    */
 /**********************************************************************/
 
-int Factorize(/* FactorType *Factor, Parameters *Inputs */);
+int Factorize(/*FactorType *Factor, Parameters *Inputs*/);
 
 /**********************************************************************/
 /*                                                                    */
@@ -65,7 +65,7 @@ int Factorize(/* FactorType *Factor, Parameters *Inputs */);
 /*                                                                    */
 /**********************************************************************/
 
-int Solve(/* FactorType *Factor, double *rhs, double *Solution */);
+int Solve(FactorType *Factor, double *rhs, double *Solution);
 
 /**********************************************************************/ 
 /*                                                                    */
@@ -92,8 +92,8 @@ int Solve(/* FactorType *Factor, double *rhs, double *Solution */);
 /* W and Lden refer to Factor->W and Factor-Lden respectively         */
 /**********************************************************************/
 
-int ComputeWandLdense(/* MMTtype *Adense, FactorType *Factor, 
-		      double *scale, int NumCols */);
+//int ComputeWandLdense(*MMTtype *Adense, FactorType *Factor,
+//					  double *scale, int *NumCols);
 
 /**********************************************************************/
 /*                                                                    */
@@ -104,8 +104,9 @@ int ComputeWandLdense(/* MMTtype *Adense, FactorType *Factor,
 /*                                                                    */
 /**********************************************************************/
 
-int EnhancedSolve(/* FactorType *Factor, double *rhs, double *Solution */);
+int EnhancedSolve(FactorType *Factor, double *rhs, double *Solution);
 
 /**********************************************************************/
+
 
 

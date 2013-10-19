@@ -6,6 +6,9 @@
  * 
  * (C) 1996 University of Chicago. See COPYRIGHT in main directory.
  */
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
+
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
@@ -421,6 +424,8 @@ solution       *MPSsolution(LP, MPS, LPsolution, Changes, Inputs)
 	    LPsolution->IterationHistory[i].NumCorrections;
 	 Solution->IterationHistory[i].phi =
 	    LPsolution->IterationHistory[i].phi;
+	 Solution->IterationHistory[i].merit =
+	    LPsolution->IterationHistory[i].merit;
       }
    
    Solution->Factorizations = LPsolution->Factorizations;

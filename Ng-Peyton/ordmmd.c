@@ -46,7 +46,11 @@
 /* Subroutine */ int ordmmd_(neqns, xadj, adjncy, invp, perm, iwsiz, iwork, 
 	nofsub, iflag)
 integer *neqns, *xadj, *adjncy, *invp, *perm, *iwsiz, *iwork, *nofsub, *iflag;
-
+/*
+ * iwszi = Worksize;
+ * neqns = dimensions;
+ *
+ */
 {
     static integer delta;
     extern /* Subroutine */ int genmmd_();
@@ -69,10 +73,10 @@ integer *neqns, *xadj, *adjncy, *invp, *perm, *iwsiz, *iwork, *nofsub, *iflag;
 
     /* Function Body */
     *iflag = 0;
-    if (*iwsiz < *neqns << 2) {
-	*iflag = -1;
-	return 0;
-    }
+//    if (*iwsiz < *neqns << 2) {
+//	*iflag = -1;
+//	return 0;
+//    }
 
 /*       DELTA  - TOLERANCE VALUE FOR MULTIPLE ELIMINATION. */
 /*       MAXINT - MAXIMUM MACHINE REPRESENTABLE (SHORT) INTEGER */

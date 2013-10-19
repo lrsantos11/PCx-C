@@ -1,11 +1,12 @@
 /* sequential formatted external common routines*/
 #include "f2c.h"
 #include "fio.h"
+#include "fmt.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern char *f__fmtbuf;
+//extern char *f__fmtbuf; // Fernando comment out
 
 integer e_rsfe(Void)
 {	int n;

@@ -9,10 +9,15 @@
  * last revised 2/27/2001
  */
 
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+//#include <math.h>
 #include <math.h>
+
 #include "memory.h"
 #include "main.h"
 
@@ -1131,7 +1136,9 @@ GetLine(line, file, length)
       line[i] = ' ';
     return_line = fgets(line, length, file);	/* get line from file */
 
-  } while (return_line != NULL && line[0] == '*'); /* discard comment lines */
+  //} while (return_line != NULL && line[0] == '*'); /* discard comment lines */
+ } while (return_line != NULL && (line[0] == '*' || line[0] == 10)); /* discard comment lines */ // and blank lines too
+
 
   if(return_line == NULL) return READERROR;
 

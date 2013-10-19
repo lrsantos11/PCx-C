@@ -19,7 +19,7 @@ extern "C" {
 #endif
 #define GLITCH '\2'
 	/* special quote character for stu */
-extern flag f__cblank,f__cplus;	/*blanks in I and compulsory plus*/
+//extern flag f__cblank,f__cplus;	/*blanks in I and compulsory plus*/
 static struct syl f__syl[SYLMX];
 int f__parenlvl,f__pc,f__revloc;
 

@@ -7,6 +7,24 @@
  * (C) 1996 University of Chicago. See COPYRIGHT in main directory.
  */
 
+#define _PCX_Usual_ // Fernando
+
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
+
+#ifndef _main_h_included_
+#define _main_h_included_
+
+#define _maxsize_ 200 // Fernando
+
+
+#define _New_Dual_
+
+#ifdef _New_Dual_
+	double *yb, *dyb, *ryb;
+#endif // _New_Dual_
+
+
 #include "hash.h"
 #include <ctype.h>
 
@@ -50,6 +68,9 @@
 
 #define YES              1
 #define NO               0
+
+typedef int errno_t;
+
 
 /* used to flag error in the input; see source file readmps.c */
 #define BAD_INPUT       -10
@@ -242,6 +263,7 @@ typedef struct {
   double logmu;
   int    NumCorrections;
   double phi;
+  double merit;
 } IterationRecord;
 
 typedef struct {
@@ -333,3 +355,5 @@ typedef struct
 } GeneralInfo;
 
 extern void SetGeneralInfo();
+
+#endif // _main_h_included_

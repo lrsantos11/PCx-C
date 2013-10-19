@@ -89,6 +89,9 @@ extern int f__scale;
 #define VAL(x) (x!='\n'?x:' ')
 #define PUT(x) (*f__putn)(x)
 
+// New (Fernando:
+extern int f__parenlvl,f__pc,f__revloc;
+
 #undef TYQUAD
 #ifndef Allow_TYQUAD
 #undef longint

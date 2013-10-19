@@ -1,3 +1,5 @@
+#include "extra_defs.h" // Fernando
+
 /* allocate parameter data structure, assign defaults, read
  * specificatons file
  *
@@ -7,6 +9,9 @@
  * 
  * (C) 1996 University of Chicago. See COPYRIGHT in main directory.
  */
+
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -92,7 +97,7 @@ NewParameters()
    ptr->Preprocessing  = YES;	/* do preprocessing */
    ptr->Scaling        = YES;   /* do scaling */
    ptr->HOCorrections  = YES;   /* Use Gondzio higher-order correctors */
-   ptr->MaxCorrections = 0;     /* Code decides maximum number of Gondzio 
+   ptr->MaxCorrections = 5;     /* Code decides maximum number of Gondzio
 				   corrections */
    ptr->Minimize       = YES;	/* minimize, don't maximize */
    ptr->InputDirectory = NULL;	/* there's not particular place to look for

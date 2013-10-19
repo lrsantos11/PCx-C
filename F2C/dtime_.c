@@ -1,3 +1,5 @@
+#include "extra_defs.h" // Fernando
+
 #include "time.h"
 
 #ifdef MSDOS

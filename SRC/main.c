@@ -13,7 +13,17 @@
 #include "memory.h"
 #include "pre.h"
 
-char    infile[200];
+typedef int errno_t;
+
+char    infile[200]; // Fernando
+
+#ifndef _PCX_Usual_
+extern char probname[_maxsize_]; // Fernando
+extern FILE *csvf; // Fernando
+
+#endif
+
+extern double UserTime, OldSysTime, OldUserTime;
 
 main(argc, argv)
      int             argc;
@@ -34,8 +44,9 @@ main(argc, argv)
    int             status;
    double          readtime = 0.0, pretime = 0.0, SysTime; 
    double          UserTime, OldSysTime, OldUserTime;
+   errno_t err;
    
-   extern        char            infile[200];
+   //extern        char            infile[200]; // Fernando (commented out)
    
   /********************************************************************
    *                                                                  *
@@ -77,6 +88,11 @@ main(argc, argv)
     * it, and check their validity.  */
    
    strcpy(infile, argv[1]);
+#ifndef _PCX_Usual_
+   strcpy(probname, argv[1]);
+   err = fopen_s(&csvf, "allmps.csv", "a");
+#endif
+
    
    /* load the default parameters */
    Inputs = NewParameters();

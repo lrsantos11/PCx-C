@@ -7,6 +7,7 @@
  * (C) 1996 University of Chicago. See COPYRIGHT in main directory.
  */
 
+//#include <math.h>
 #include <math.h>
 #include <stdio.h>
 #include "main.h"

@@ -7,7 +7,11 @@
  * (C) 1996 University of Chicago. See COPYRIGHT in main directory.
  */
 
+#define _CRT_SECURE_NO_WARNINGS 1 // Fernando
+#define _CRT_NONSTDC_NO_WARNINGS 1 // Fernando
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>		/* for determining file size */
 #include <sys/stat.h>
 #include <string.h>
@@ -15,6 +19,10 @@
 #include "main.h"
 #include "memory.h"
 #include "pre.h"
+
+#ifndef _PCX_Usual_
+	extern double * merit, *central_merit;
+#endif // _PCX_Usual_
 
 
 /*****************************************************************/
@@ -112,6 +120,8 @@ FILE *OpenInputFile(infile, filesize, Inputs)
 /* Prints the solution from "Solution" to the output file "infile".out. Also
  * writes the history file "infile".log */
 
+//extern double * merit, *central_merit;
+
 void PrintSolution(MPS, Solution, Inputs, infilename)
      MPStype        *MPS;
      solution       *Solution;
@@ -120,14 +130,15 @@ void PrintSolution(MPS, Solution, Inputs, infilename)
 {
    char            outfilename[200], logfilename[200], *basename,
                   *suffix, statusTxt[40], rootfilename[200];
-   FILE           *outfile, *logfile;
+   char csv_file_name[200], preffix[10];
+   FILE           *outfile, *logfile, *csv_file;
    int             row, col, entry, i, j, len;
    int             WriteSolution, WriteHistory;
    
    WriteSolution = Inputs->WriteSolution;
    WriteHistory = Inputs->WriteHistory;
    
-   if (WriteSolution || WriteHistory) 
+   //if (WriteSolution || WriteHistory) 
       {
 	 /* get prefix of file names by stripping off leading path and trailing
 	  * .mps */
@@ -161,6 +172,78 @@ void PrintSolution(MPS, Solution, Inputs, infilename)
 		      outfilename);
 	    }
       }
+
+
+	if (!WriteHistory) 
+	{
+		i = Solution->Status;
+		sprintf(preffix, "%d", i);
+		//	itoa(i, preffix, 10);
+		strcpy(csv_file_name, preffix);
+		strcat(csv_file_name, "_");
+		i = Solution->Iterations;
+		sprintf(preffix, "%d", i);
+		strcat(csv_file_name, preffix);
+		strcat(csv_file_name, "_");
+		strcat(csv_file_name, rootfilename);
+		strcat(csv_file_name, ".csv");
+		csv_file = fopen(csv_file_name, "w");
+
+		if (csv_file == NULL) 
+		{
+		   printf("Unable to open csv_file '%s'; solution not printed.\n",
+			  csv_file_name);
+		   return;
+		}
+
+		if(Inputs->HOCorrections && Inputs->MaxCorrections > 0) 
+		{
+			fprintf(csv_file, "Iter;Primal;Dual;PriInf;DualInf;log (mu centr);corr;log (phi);log (opt merit);log (centr merit)\n");
+		} 
+		else 
+		{
+			fprintf(csv_file, "Iter;Primal;Dual;PriInf;DualInf;log (mu centr);log (phi);log (opt merit);log (centr merit)\n");
+		}
+
+		for (i = 0; i <= Solution->Iterations; i++) 
+		{
+			fprintf(csv_file, "%3d;%11.4e;%11.4e;%7.1e;%7.1e;%6.2f;",
+				i, Solution->IterationHistory[i].PrimalObjective,
+				Solution->IterationHistory[i].DualObjective,
+				Solution->IterationHistory[i].PriInf,
+				Solution->IterationHistory[i].DualInf,
+				Solution->IterationHistory[i].logmu);
+
+#ifndef _PCX_Usual_
+			if (Inputs->HOCorrections && Inputs->MaxCorrections > 0)
+			{
+				fprintf(csv_file, "%2d;%7.1e;%7.1e;%7.1e\n", 
+					Solution->IterationHistory[i].NumCorrections, 
+					log10(Solution->IterationHistory[i].phi), log10(merit[i]), log10(central_merit[i]));
+			}
+			else
+			{
+				fprintf(csv_file, "%7.1e;%7.1e;%7.1e\n", 
+					log10(Solution->IterationHistory[i].phi), log10(merit[i]), log10(central_merit[i]));
+			}
+#else
+			if (Inputs->HOCorrections && Inputs->MaxCorrections > 0)
+			{
+				fprintf(csv_file, "%2d;%7.1e\n", 
+					Solution->IterationHistory[i].NumCorrections, 
+					log10(Solution->IterationHistory[i].phi));
+			}
+			else
+			{
+				fprintf(csv_file, "%7.1e\n", 
+					log10(Solution->IterationHistory[i].phi));
+			}
+#endif // _PCX_Usual_
+		}
+		fclose(csv_file);
+	}
+
+
    /* if requested, open the history file */
    
    if (WriteHistory) 
@@ -422,32 +505,48 @@ void PrintSolution(MPS, Solution, Inputs, infilename)
 	 
 	 if(Inputs->HOCorrections && Inputs->MaxCorrections > 0) 
 	    {
-	       fprintf(logfile, " Iter    Primal       Dual      ");
-	       fprintf(logfile, "(PriInf  DualInf)  log(mu) corr  Merit\n");
+	       fprintf(logfile, "Iter;Primal;Dual;PriInf;DualInf;log(mu);corr;Merit;New Merit;Central Merit\n");
 	    } 
 	 else 
 	    {
-	       fprintf(logfile, " Iter    Primal       Dual      ");
-	       fprintf(logfile, "(PriInf  DualInf)  log(mu)   Merit\n");
+	       fprintf(logfile, "Iter;Primal;Dual;PriInf;DualInf;log(mu);Merit;New Merit;Central Merit\n");
 	    }
 	 
 	 
-	 for (i = 0; i <= Solution->Iterations; i++) 
+	 if (!WriteHistory) for (i = 0; i <= Solution->Iterations; i++) 
 	    {
-	       fprintf(logfile, "%3d  %11.4e  %11.4e  (%7.1e %7.1e)   %6.2f  ",
-		       i, Solution->IterationHistory[i].PrimalObjective,
-		       Solution->IterationHistory[i].DualObjective,
-		       Solution->IterationHistory[i].PriInf,
-		       Solution->IterationHistory[i].DualInf,
-		       Solution->IterationHistory[i].logmu);
-	       
+			fprintf(logfile, "%3d;%11.4e;%11.4e;%7.1e;%7.1e;%6.2f;",
+				i, Solution->IterationHistory[i].PrimalObjective,
+				Solution->IterationHistory[i].DualObjective,
+				Solution->IterationHistory[i].PriInf,
+				Solution->IterationHistory[i].DualInf,
+				Solution->IterationHistory[i].logmu);
+       
+#ifndef _PCX_Usual_
 	       if (Inputs->HOCorrections && Inputs->MaxCorrections > 0)
-		  fprintf(logfile, "%2d    %7.1e\n", 
-			  Solution->IterationHistory[i].NumCorrections, 
-			  Solution->IterationHistory[i].phi);
+		   {
+				fprintf(logfile, "%2d;%7.1e;%7.1e;%7.1e\n", 
+					Solution->IterationHistory[i].NumCorrections, 
+					Solution->IterationHistory[i].phi, merit[i], central_merit[i]);
+		   }
 	       else
-		  fprintf(logfile, "  %7.1e\n", 
-			  Solution->IterationHistory[i].phi);
+		   {
+				fprintf(logfile, "%7.1e;%7.1e;%7.1e\n", 
+					Solution->IterationHistory[i].phi, merit[i], central_merit[i]);
+		   }
+#else
+	       if (Inputs->HOCorrections && Inputs->MaxCorrections > 0)
+		   {
+				fprintf(logfile, "%2d;%7.1e\n", 
+					Solution->IterationHistory[i].NumCorrections, 
+					Solution->IterationHistory[i].phi);
+		   }
+	       else
+		   {
+				fprintf(logfile, "%7.1e\n", 
+					Solution->IterationHistory[i].phi);
+		   }
+#endif // _PCX_Usual_
 	    }
 	 
 	 fprintf(logfile, "\n %d iterations\n", Solution->Iterations);

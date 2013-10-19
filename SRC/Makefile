@@ -1,3 +1,5 @@
+CC = icc
+
 OBJS = presolve.o PCx2.o readmps.o lpmps.o memory.o hash.o \
        parameters.o split.o io.o timers.o  \
        blkLVL.o PCx.o solve.o dcolumns.o wrappers.o \
