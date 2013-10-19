@@ -14,7 +14,7 @@
 #include "main.h"
 #include "memory.h"
 #include "solver.h"
-#include "NgPeyton.h"
+#include "Ng-Peyton.h"
 #include "string.h"
 #include "f2c.h"
 
