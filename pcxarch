@@ -34,7 +34,7 @@ endif
 set SunOSTest = `expr "$LARCH" : "\(....\)"`
 if ("$SunOSTest" == "sun4") then
   set LARCH = sun4
-  set Version = `/bin/uname -r`
+  set Version = `/usr/bin/uname -r`
   set MajorVersion = `expr "$Version" : "\(.\)"`
   if ("$MajorVersion" ==  5) then
     set LARCH = "solaris"

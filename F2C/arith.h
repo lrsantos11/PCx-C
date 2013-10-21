@@ -4,5 +4,4 @@
 #define Intcast (int)(long)
 #define Double_Align
 #define X64_bit_pointers
-#define Sudden_Underflow
 #define NANCHECK

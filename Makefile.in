@@ -1,12 +1,12 @@
-# Makefile.  Generated from Makefile.in by configure.
+# @configure_input@
 
-export PCx_ARCH = darwin
-export WSSMP_LIB = 
-export NG_LIB = ../Ng-Peyton/cholesky.a
-export TARGETDIR = .
+export PCx_ARCH = @PCx_ARCH@
+export WSSMP_LIB = @WSSMP_LIB@
+export NG_LIB = @NG_LIB@
+export TARGETDIR = @TARGETDIR@
 
-export CC ?= icc
-export CFLAGS ?= -g -O2
+export CC ?= @CC@
+export CFLAGS ?= @CFLAGS@
 export FC ?= @FC@
 export FCFLAGS ?= @FCFLAGS@
 

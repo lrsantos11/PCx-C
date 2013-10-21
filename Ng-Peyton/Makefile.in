@@ -10,9 +10,9 @@
 #***********************************************************************
 #***********************************************************************
 
-PCx_ARCH = darwin
-NG_LIB = ../Ng-Peyton/cholesky.a
-TARGETDIR = .
+PCx_ARCH = @PCx_ARCH@
+NG_LIB = @NG_LIB@
+TARGETDIR = @TARGETDIR@
 
 CFLAGS  = -O3 -I../F2C
 
