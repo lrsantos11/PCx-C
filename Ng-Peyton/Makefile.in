@@ -28,12 +28,12 @@ LIB_FILES = \
 
 include ../MAKEARCH/$(PCx_ARCH).make
 
-libcholesky.a: $(LIB_FILES)
-	${AR} r libcholesky.a $(LIB_FILES)
-	$(RANLIB) libcholesky.a
+cholesky.a: $(LIB_FILES)
+	${AR} r cholesky.a $(LIB_FILES)
+	$(RANLIB) cholesky.a
 
 main:	${files}
 	${CC} -o $@ ${files}
 
 clean:
-	\rm -f *.o main libcholesky.a
+	\rm -f *.o main cholesky.a

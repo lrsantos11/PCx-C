@@ -7,6 +7,8 @@ PCX_LIB   =  libPCx.a
 MYSOLVER_LIB = ../mysolver/libmysolver.a
 
 F2C_LIB   =  -L../F2C -lf2c
+
+
 # NG_LIB    is defined in the build script
 # WSSMP_LIB is defined in the build script
 
@@ -26,21 +28,21 @@ include ../MAKEARCH/$(PCx_ARCH).make
 # this is still the default:
 
 PCx_NgPeyton: main.o $(PCX_LIB) Ng-Peyton.o $(MISC_OBJS) $(NG_LIB)
-	$(CC) $(LFLAGS) main.o  Ng-Peyton.o ${TARGETDIR}./$(PCX_LIB) $(MISC_OBJS) $(NG_LIB) \
-	 $(F2C_LIB)   -L../Ng-Peyton -lcholesky -o ../PCx -lm
+	$(CC) $(LFLAGS) main.o  Ng-Peyton.o ${TARGETDIR}/$(PCX_LIB) $(MISC_OBJS) $(NG_LIB) \
+	 $(F2C_LIB)   -o ../PCx -lm -mkl
 
 # might have to add the parameter -bmaxdata:44000000 for large applications.
 # (or with en even larger number)
 
 PCx_wssmp: main.o $(PCX_LIB) wssmp.o $(MISC_OBJS) $(WSSMP_LIB)
 	$(CC) $(LFLAGS) main.o wssmp.o ${TARGETDIR}/$(PCX_LIB) $(MISC_OBJS) \
-          $(WSSMP_LIB) $(F2C_LIB) -o ../PCx -lm
+          $(WSSMP_LIB) $(F2C_LIB) -o ../PCx -lm -mkl
 
 # template for other solvers
 
 PCx_yoursolver: main.o $(PCX_LIB) musolver.o $(MISC_OBJS) $(MYSOLVER_LIB)
 	$(CC) $(LFLAGS) main.o ${TARGETDIR}/$(PCX_LIB) mysolver.o $(MISC_OBJS) \
-        $(MYSOLVER_LIB) $(F2C_LIB) -o ../PCx -lm
+        $(MYSOLVER_LIB) $(F2C_LIB) -o ../PCx -lm -mkl
 
 objs:	$(OBJS)
 
