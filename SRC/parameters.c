@@ -32,6 +32,7 @@
 /*           November 1997                                             */
 /*=====================================================================*/
 
+/*
 #ifdef WIN32
 
 static int strcasecmp(const char *, const char *);
@@ -46,7 +47,7 @@ strcasecmp(const char *s, const char *t)
 }
 
 #endif
-
+*/
 
 /***************************************************************************/
 /*   Contents:                                                             */

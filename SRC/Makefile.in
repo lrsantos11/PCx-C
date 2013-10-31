@@ -5,9 +5,8 @@ OBJS = presolve.o PCx2.o readmps.o lpmps.o memory.o hash.o \
 
 PCX_LIB   =  libPCx.a
 MYSOLVER_LIB = ../mysolver/libmysolver.a
+
 F2C_LIB   =  -L../F2C -lf2c
-
-
 # NG_LIB    is defined in the build script
 # WSSMP_LIB is defined in the build script
 
@@ -27,7 +26,7 @@ include ../MAKEARCH/$(PCx_ARCH).make
 # this is still the default:
 
 PCx_NgPeyton: main.o $(PCX_LIB) Ng-Peyton.o $(MISC_OBJS) $(NG_LIB)
-	$(CC) $(LFLAGS) main.o  Ng-Peyton.o ${TARGETDIR}/$(PCX_LIB) $(MISC_OBJS) $(NG_LIB) \
+	$(CC) $(LFLAGS) main.o  Ng-Peyton.o ${TARGETDIR}./$(PCX_LIB) $(MISC_OBJS) $(NG_LIB) \
 	 $(F2C_LIB)   -L../Ng-Peyton -lcholesky -o ../PCx -lm
 
 # might have to add the parameter -bmaxdata:44000000 for large applications.

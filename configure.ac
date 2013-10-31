@@ -3,7 +3,7 @@ AC_INIT([PCx], [1.1],,[http://pages.cs.wisc.edu/~swright/PCx/])
 #AC_CONFIG_SRCDIR([src/foo.c])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([F2C/abort_.c])
-#aAC_CONFIG_HEADERS([config.h])
+#AC_CONFIG_HEADERS([config.h])
 
 # Uncompress files in mps folder
 echo "Uncompress files in mps folder. It will take some minutes."
@@ -45,7 +45,7 @@ if test -e /usr/bin/uname; then
     PCx_ARCH="linux"
   elif test "$PCx_ARCH" == "FreeBSD"; then
     PCx_ARCH="freebsd"
-  elif test "$PCx_ARCH" == "Darwina"; then
+  elif test "$PCx_ARCH" == "Darwin"; then
     PCx_ARCH="darwin"
   elif test "$PCx_ARCH" != "IRIX" && "$PCx_ARCH" != "IRIX64"; then
     PCx_ARCH=`/usr/bin/uname -m`
