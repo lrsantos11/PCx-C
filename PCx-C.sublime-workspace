@@ -8,23 +8,24 @@
 	"buffers":
 	[
 		{
-			"contents": "Remote:   origin @ https://github.com/lrsantos11/PCx-C.git\nLocal:    master ~/Documents/Matematica/Unicamp/doutorado/tese/testes/PCx-C\nHead:     5b9ea89 make working with intel compiler C on root\n\n\nStashes:\n	0: WIP on master: 007b784 Trying to run with autoconf\n\nNothing to commit (working directory clean)\n\n# Movement:\n#    r = refresh status\n#    1-5 = jump to section\n#    n = next item, N = next section\n#    p = previous item, P = previous section\n#\n# Staging:\n#    s = stage file/section, S = stage all unstaged files\n#    ctrl+shift+s = stage all unstaged and untracked files\n#    u = unstage file/section, U = unstage all files\n#    k = discard file/section, K = discard everything\n#\n# Commit:\n#    c = commit, C = commit -a (add unstaged)\n#    ctrl+shift+c = commit --amend (amend previous commit)\n#\n# Other:\n#    i = ignore file, I = ignore pattern\n#    enter = open file\n#    d = view diff\n#\n# Stashes:\n#    a = apply stash, A = pop stash\n#    z = create stash from worktree",
+			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 985,
-				"line_ending": "Unix",
-				"name": "*git-status*: PCx-C",
-				"read_only": true,
-				"scratch": true
+				"buffer_size": 1031,
+				"line_ending": "Unix"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 127.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"pu",
+				"Git: Push"
+			],
 			[
 				"push",
 				"Git: Push"
@@ -243,18 +244,19 @@
 			[
 				{
 					"buffer": 0,
+					"file": ".gitignore",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 985,
+						"buffer_size": 1031,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								263,
-								263
+								794,
+								794
 							]
 						],
 						"settings":
@@ -362,17 +364,11 @@
 								"Python Django": "Python"
 							},
 							"codeintel_tooltips": "popup",
-							"draw_white_space": "none",
-							"git_repo": "/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/PCx-C",
-							"git_status": true,
-							"git_view": "status",
 							"sublime_auto_complete": true,
-							"syntax": "Packages/SublimeGit/SublimeGit Status.tmLanguage",
-							"translate_tabs_to_spaces": false,
-							"word_wrap": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 490.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
