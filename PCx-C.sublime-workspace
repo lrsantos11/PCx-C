@@ -8,10 +8,37 @@
 	"buffers":
 	[
 		{
+			"contents": "\n# Vim's temporary files.\n*.swp\n\n# Doc\nDOC/_build\nDOC/_doxygen\nxml\n\n# ctags\n*tags\n\n# dev\ndebug\nmps-test/\n\n# C/C++ Object files\n*.o\n*.slo\n*.lo\n*.ko\n\n# C/C++ Libraries\n*.lib\n*.a\n*.so\n*.dylib\n*.lai\n*.la\n*.a\n\n# C/C++ Shared objects (inc. Windows DLLs)\n*.dll\n*.so\n*.so.*\n*.dylib\n\n# C/C++ Executables\n*.exe\n*.out\n*.app\n\n# Configuration\n*Makefile\naclocal.m4\nautom4te.cache\nconfig.status\nltmain.sh\n\n# Test problem\nmps/*\n\n# Executable\nPCx\n\n# Log files\n*.log\n\n# Benchmark\n__pycache__/*\n\n#Files from Fernando project\n\nF2C/Files_Fernando/F2C.vcproj\nF2C/Files_Fernando/F2C_command_line.txt\nF2C/Files_Fernando/f2c.icproj\nNg-Peyton/Files_Fernando/NG-Peyton_command_line.txt\nNg-Peyton/Files_Fernando/Ng-Peyton.icproj\nNg-Peyton/Files_Fernando/Ng-Peyton.vcproj",
 			"file": ".gitignore",
+			"file_size": 1031,
+			"file_write_time": 130277943480000000,
 			"settings":
 			{
-				"buffer_size": 1031,
+				"buffer_size": 742,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/perprof-py/tikzexample/example.tex",
+			"settings":
+			{
+				"buffer_size": 291,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/perprof-py/tikzexample/profile.tex",
+			"settings":
+			{
+				"buffer_size": 163755,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/perprof-py/CONTRIBUTING.md",
+			"settings":
+			{
+				"buffer_size": 1415,
 				"line_ending": "Unix"
 			}
 		}
@@ -25,6 +52,10 @@
 			[
 				"pu",
 				"Git: Push"
+			],
+			[
+				"status",
+				"Git: Status"
 			],
 			[
 				"push",
@@ -176,6 +207,7 @@
 	},
 	"file_history":
 	[
+		"/Users/lrsantos/.gitignore_global",
 		"/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/PCx-C/SRC/Makefile.in",
 		"/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/PCx-C/Makefile.in",
 		"/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/PCx-C/Makefile2",
@@ -239,7 +271,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -248,15 +280,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1031,
+						"buffer_size": 742,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								794,
-								794
+								476,
+								476
 							]
 						],
 						"settings":
@@ -368,7 +400,90 @@
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 490.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/perprof-py/tikzexample/example.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 291,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/perprof-py/tikzexample/profile.tex",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 163755,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/LaTeX.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/lrsantos/Documents/Matematica/Unicamp/doutorado/tese/testes/perprof-py/CONTRIBUTING.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1415,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1063,
+								1037
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

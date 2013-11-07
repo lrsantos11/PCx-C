@@ -59,27 +59,6 @@ PCx
 # Benchmark
 __pycache__/*
 
-# OS generated files #
-######################
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
-C
-# Thumbnails
-._*
-
-
-# Files that might appear on external disk #
-######################
-.Spotlight-V100
-.Trashes
-
-# Sublime Text Projects #
-######################
-*.sublime-project
-*.sublime-workspace
-
 #Files from Fernando project
 
 F2C/Files_Fernando/F2C.vcproj
