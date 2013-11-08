@@ -14,7 +14,7 @@ PCx_ARCH = darwin
 NG_LIB = ../Ng-Peyton/cholesky.a
 TARGETDIR = .
 
-CFLAGS  = -O3 -I../F2C
+CFLAGS = -O3  -axSSE4.2 -xSSE4.2   -I../F2C
 
 
 LIB_FILES = \

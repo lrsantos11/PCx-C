@@ -14,7 +14,7 @@
 
 .SUFFIXES: .c .o
 
-CFLAGS = -O3
+CFLAGS = -O3  -axSSE4.2 -xSSE4.2  
 
 ifeq ($(PCx_ARCH),linux)
 CFLAGS = -O -DNON_UNIX_STDIO
